@@ -11,7 +11,7 @@ setup_repository(){
 # Setup the GPG key
 setup_gpg_key(){
     echo "Adding Docker’s official GPG key..."
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg -y
     sudo chmod a+r /etc/apt/keyrings/docker.gpg
 }
 
