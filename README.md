@@ -15,7 +15,7 @@ Before using these scripts, ensure you have `sudo` privileges on the system wher
 Clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/wojdak/linux-setup-automation.git
+git clone https://github.com/Wojdak/linux-setup-automation.git
 cd linux-setup-automation
 ```
 Change the permission of the scripts to make them executable:
