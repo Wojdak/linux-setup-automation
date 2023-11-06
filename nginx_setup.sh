@@ -2,8 +2,8 @@
 
 DOMAIN_NAME=$1
 
+# Install nginx package
 install_nginx() {
-    # Install nginx package
     echo "Updating packages.."
     sudo apt-get update -y
     echo "Installing NGINX..."
