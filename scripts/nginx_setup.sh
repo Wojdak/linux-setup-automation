@@ -28,10 +28,10 @@ configure_nginx(){
 
     # Create a directory for the domain if it doesn't exist
     echo "Creating directory for the domain at /var/www/${DOMAIN_NAME}/html..."
-    sudo mkdir -p /var/www/${DOMAIN_NAME}/html 
+    sudo mkdir -p /var/www/"${DOMAIN_NAME}"/html 
 
     # Assign ownership of the directory with the $USER environment variable
-    sudo chown -R $USER:$USER /var/www/${DOMAIN_NAME}/html
+    sudo chown -R "$USER":"$USER" /var/www/"${DOMAIN_NAME}"/html
 
     # Create a sample index.html page
     echo "Creating a sample landing page at /var/www/${DOMAIN_NAME}/html/index.html..."
@@ -43,7 +43,7 @@ configure_nginx(){
     <body>
         <h1>Success! The ${DOMAIN_NAME} server block is working!</h1>
     </body>
-    </html>" | sudo tee /var/www/${DOMAIN_NAME}/html/index.html
+    </html>" | sudo tee /var/www/"${DOMAIN_NAME}"/html/index.html
 
     # Create server block file
     echo "Setting up server configuration file for ${DOMAIN_NAME} (using port 80) at /etc/nginx/sites-available/${DOMAIN_NAME}..."
@@ -60,10 +60,10 @@ configure_nginx(){
     location / {
         try_files \$uri \$uri/ =404;
     }
-    }" | sudo tee /etc/nginx/sites-available/${DOMAIN_NAME}
+    }" | sudo tee /etc/nginx/sites-available/"${DOMAIN_NAME}"
 
     # Enable the server block by creating a symbolic link in sites-enabled
-    sudo ln -s /etc/nginx/sites-available/${DOMAIN_NAME} /etc/nginx/sites-enabled/
+    sudo ln -s /etc/nginx/sites-available/"${DOMAIN_NAME}" /etc/nginx/sites-enabled/
 
     # Check the configuration for syntax errors
     sudo nginx -t

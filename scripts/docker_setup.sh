@@ -19,8 +19,8 @@ setup_gpg_key(){
 add_repository(){
     echo "Adding the repository to apt sources..."
     echo \
-    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-    "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+    "deb [arch='$(dpkg --print-architecture)' signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    '$(. /etc/os-release && echo "$VERSION_CODENAME")' stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update -y
 }
@@ -34,7 +34,7 @@ install_docker_packages(){
 # Add current user to Docker group
 add_user_to_docker_group(){
     echo "Adding current user to the Docker group..."
-    sudo usermod -aG docker $USER
+    sudo usermod -aG docker "$USER"
 }
 
 # Start and enable Docker to run on boot

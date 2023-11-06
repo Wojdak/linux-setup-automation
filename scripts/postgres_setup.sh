@@ -24,7 +24,7 @@ create_user_and_db(){
     # Commands to create a new user and a database
     echo "Creating new user and a database..."
     sudo -u postgres psql -c "CREATE USER $db_user WITH ENCRYPTED PASSWORD '$db_pass';"
-    sudo -u postgres createdb -O $db_user $db_name
+    sudo -u postgres createdb -O "$db_user" "$db_name"
     echo "Creation complete."
 }
 
