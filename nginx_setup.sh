@@ -20,12 +20,11 @@ enable_and_start_nginx() {
 
 # Set up a default website configuration
 configure_nginx(){
-    if [ -z "${DOMAIN_NAME}" ]; then 
-        echo "Domain name argument is required."
-        exit 1
-    fi
-
     echo "Configuring NGINX for ${DOMAIN_NAME}..."
+
+    # Remove the default NGINX host that might conflict
+    echo "Removing the default NGINX server block..."
+    sudo rm -f /etc/nginx/sites-enabled/default
 
     # Create a directory for the domain if it doesn't exist
     echo "Creating directory for the domain at /var/www/${DOMAIN_NAME}/html..."
