@@ -1,0 +1,30 @@
+name: Shell Script Linting
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+  # Run this workflow manually
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4.1.1
+    - name: Install ShellCheck
+      run: sudo apt-get install shellcheck
+
+    - name: Lint Shell Scripts
+      run: shellcheck *.sh scripts/*.sh > lint-results.txt || true # Prevent shellcheck from failing the workflow
+          
+    - name: Upload lint results as an artifact
+      uses: actions/upload-artifact@v3.1.3
+      with:
+        name: lint-results
+        path: lint-results.txt
